@@ -41,6 +41,7 @@ public class VCFProcessor {
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("#")) continue;
                 String[] cols = line.split("\t");
+                if (cols.length < 8) continue;
 
                 String ref = cols[3], alt = cols[4], info = cols[7];
                 if (ref.length() != 1 || alt.length() != 1 || alt.contains(",")) continue;
@@ -56,6 +57,7 @@ public class VCFProcessor {
                 if (ann == null) continue;
 
                 String[] annFields = ann.split("\\|");
+                if (annFields.length < 10) continue;
 
                 String transcript = annFields[6], hgvsC = annFields[9], variantType = annFields[1];
 
