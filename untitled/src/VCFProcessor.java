@@ -10,7 +10,16 @@ import java.util.Objects;
 
 public class VCFProcessor {
     public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.out.println("Adjon meg egy könyvtárat");
+            return;
+        }
         File directory = new File(args[0]);
+
+        if (!directory.isDirectory()) {
+            System.out.println(args[0] + "nem egy könyvtár");
+            return;
+        }
 
         Map<String, Eredmeny> map = new HashMap<>();
 
